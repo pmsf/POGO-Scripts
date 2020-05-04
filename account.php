@@ -29,11 +29,8 @@ $rdm_high_level = $rdm_db->query("
     SELECT
       SUM(
           (failed IS NULL AND first_warning_timestamp is NULL) OR
-          (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp <= UNIX_TIMESTAMP()) OR
-          (failed = 'suspended' AND failed_timestamp <= UNIX_TIMESTAMP() - 2592000) OR
-          (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp > UNIX_TIMESTAMP()) OR
-          (failed = 'suspended' AND failed_timestamp > UNIX_TIMESTAMP() - 2592000)
-          ) as total,
+          (failed IN('GPR_RED_WARNING', 'suspended'))
+      ) as total,
       SUM(
           (failed IS NULL AND first_warning_timestamp is NULL) OR
           (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp <= UNIX_TIMESTAMP()) OR
@@ -70,11 +67,8 @@ $rdm_low_level = $rdm_db->query("
     SELECT
       SUM(
           (failed IS NULL AND first_warning_timestamp is NULL) OR
-          (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp <= UNIX_TIMESTAMP()) OR
-          (failed = 'suspended' AND failed_timestamp <= UNIX_TIMESTAMP() - 2592000) OR
-          (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp > UNIX_TIMESTAMP()) OR
-          (failed = 'suspended' AND failed_timestamp > UNIX_TIMESTAMP() - 2592000)
-          ) as total,
+          (failed IN('GPR_RED_WARNING', 'suspended'))
+      ) as total,
       SUM(
           (failed IS NULL AND first_warning_timestamp is NULL) OR
           (failed = 'GPR_RED_WARNING' AND warn_expire_timestamp <= UNIX_TIMESTAMP()) OR
