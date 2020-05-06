@@ -9,5 +9,5 @@
 
 ![image](https://media.discordapp.net/attachments/600314172995141632/707650157180747868/version.png)
 
-- Test with `php account.php`
+- Test with `php version.php`
 - Once you confirmed it to work set a cron to run it every x time.
